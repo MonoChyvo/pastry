@@ -1,15 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import './App.css' // Asegúrate de importar tus estilos CSS aquí
+import './App.css'
+import Logo from './components/Logo'
 
 // Componentes decorativos eliminados temporalmente
-
-// Componente para el logo
-const Logo = () => (
-  <div className='logo'>
-    {' '}
-    Betsubara <span>.</span>
-  </div>
-)
 
 // Componente para el título principal
 const HeroTitle = () => (
@@ -32,12 +25,12 @@ const HankoButton = () => (
   <a
     href='#products-column'
     className='hanko-button'>
-    Descubrir Sabores
+    <span className='jp-accent'>発見</span> Descubrir Sabores
   </a>
 )
 
 // Componente para cada tarjeta de producto
-const ProductCard = ({ imageSrc, title }) => (
+const ProductCard = ({ imageSrc, title, jpTitle }) => (
   <div className='product-card simplified-card'>
     <div className='product-image'>
       <img
@@ -45,6 +38,7 @@ const ProductCard = ({ imageSrc, title }) => (
         alt={title}
       />
     </div>
+    {jpTitle && <span className='jp-elegant product-jp-title'>{jpTitle}</span>}
     <h3 className='product-title'>{title}</h3>
   </div>
 )
@@ -53,15 +47,18 @@ const ProductCard = ({ imageSrc, title }) => (
 const ProductsGrid = () => (
   <div className='products-grid'>
     <ProductCard
-      imageSrc='/api/placeholder/200/200'
+      imageSrc='/assets/products/matcha.jpg'
+      jpTitle='抹茶'
       title='Pastel de Matcha'
     />
     <ProductCard
-      imageSrc='/api/placeholder/200/200'
+      imageSrc='/assets/products/mochi.jpg'
+      jpTitle='餅'
       title='Mochi Cake'
     />
     <ProductCard
-      imageSrc='/api/placeholder/200/200'
+      imageSrc='/assets/products/dorayaki.jpg'
+      jpTitle='どら焼き'
       title='Dorayaki Especial'
     />
   </div>
@@ -70,21 +67,24 @@ const ProductsGrid = () => (
 // Componente para la sección "Nosotros"
 const AboutSection = () => (
   <div className='column-content'>
-    <h2> Filosofía </h2>
+    <h2 className='jp-title'>
+      哲学 <span className='latin-font'>Filosofía</span>
+    </h2>
     <div className='about-content'>
       <p>
-        En Betsubara, creamos pasteles que respetan los principios del <span className='highlight'>Ma (間)</span> - el
-        espacio vacío que da significado a la experiencia.
+        En Betsubara, creamos pasteles que respetan los principios del{' '}
+        <span className='highlight jp-term'>間 (Ma)</span> - el espacio vacío que da significado a la experiencia.
       </p>
       <p>
-        Cada uno de nuestros productos es resultado del concepto <span className='highlight'>Shibui (渋い)</span> -
-        donde la belleza reside en la elegancia sutil y discreta.
+        Cada uno de nuestros productos es resultado del concepto{' '}
+        <span className='highlight jp-term'>渋い (Shibui)</span> - donde la belleza reside en la elegancia sutil y
+        discreta.
       </p>
       <p>
-        Nos inspira el <span className='highlight'>Yūgen (幽玄)</span> - esa profundidad misteriosa que invita a
+        Nos inspira el <span className='highlight jp-term'>幽玄 (Yūgen)</span> - esa profundidad misteriosa que invita a
         descubrir capas de sabor y textura en cada creación.
       </p>
-      <div className='contact-info'>
+      <div className='contact-info jp-modern'>
         <div className='contact-item'>Calle Cerezos 123</div>
         <div className='contact-item'>contacto@sakurapastry.com</div>
         <div className='contact-item'>+52 555 123 4567</div>
@@ -144,9 +144,10 @@ const FlyingLeaves = () => {
     }
 
     // Programar la adición de hojas en intervalos aleatorios
+    let timeoutId
     const scheduleNextLeaf = () => {
       const nextTime = 800 + Math.random() * 2000 // Entre 0.8 y 2.8 segundos
-      setTimeout(() => {
+      timeoutId = setTimeout(() => {
         addLeaf()
         scheduleNextLeaf()
       }, nextTime)
@@ -155,12 +156,24 @@ const FlyingLeaves = () => {
     scheduleNextLeaf()
 
     return () => {
-      // Limpiar cualquier timeout pendiente al desmontar
+      // Limpiar timeout pendiente al desmontar
+      clearTimeout(timeoutId)
     }
   }, [])
 
   return (
-    <div className='flying-leaves'>
+    <div
+      className='flying-leaves'
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        overflow: 'hidden',
+        zIndex: 10,
+      }}>
       {leaves.map((leaf) => (
         <div
           key={leaf.id}
@@ -195,6 +208,8 @@ const App = () => {
     // Asignar distancias aleatorias para el balanceo de bambú
     root.style.setProperty('--bamboo-sway-distance-1', `${Math.random() * 5 + Math.random() * 4}px`)
     root.style.setProperty('--bamboo-sway-distance-2', `${Math.random() * 3 + Math.random() * 2}px`)
+
+    // Nota: Las configuraciones para prevenir scrolling se movieron a CSS
   }, [])
 
   return (
@@ -208,11 +223,14 @@ const App = () => {
       <div
         className='column'
         id='hero-column'>
-        <div className='column-content'>
+        <div className='hero-background-pattern'></div>
+        <div className='column-content hero-content'>
           <Logo />
-          <HeroTitle />
-          <HeroSubtitle />
-          <HankoButton />
+          <div className='hero-text-container'>
+            <HeroTitle />
+            <HeroSubtitle />
+            <HankoButton />
+          </div>
           <div className='footer'>
             <p>&copy; 2025 Sakura Pastry. Todos los derechos reservados.</p>
           </div>

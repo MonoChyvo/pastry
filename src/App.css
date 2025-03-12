@@ -7,6 +7,15 @@
   --red-lacquer: linear-gradient(135deg, #d72925 30%, #f04a46 50%, #d72925 70%);
   --spacing: 2rem;
 
+  /* Variables de tipografía */
+  --font-body: 'Noto Sans', sans-serif;
+  --font-body-jp: 'Noto Sans JP', sans-serif;
+  --font-title: 'Playfair Display', serif;
+  --font-title-jp: 'Noto Serif JP', serif;
+  --font-accent: 'Yuji Syuku', serif;
+  --font-modern-jp: 'M PLUS 1p', sans-serif;
+  --font-elegant-jp: 'Sawarabi Mincho', serif;
+
   /* Variables para la aleatoriedad de los bambúes */
   --bamboo-sway-time-1: 5s;
   --bamboo-sway-time-2: 7s;
@@ -21,19 +30,170 @@
   box-sizing: border-box;
 }
 
+/* Estilo global del cuerpo para prevenir desplazamiento */
 body {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: var(--font-body);
   background-color: #212121;
   color: #f5f5f5;
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Clases de tipografía japonesa */
+.jp-text {
+  font-family: var(--font-body-jp);
+}
+
+.jp-title {
+  font-family: var(--font-title-jp);
+}
+
+.jp-accent {
+  font-family: var(--font-accent);
+}
+
+.jp-modern {
+  font-family: var(--font-modern-jp);
+}
+
+.jp-elegant {
+  font-family: var(--font-elegant-jp);
+}
+
+/* Tipografía */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h1.jp-title,
+h2.jp-title,
+h3.jp-title,
+h4.jp-title {
+  font-family: var(--font-title-jp);
+}
+
+/* Clase para términos japoneses destacados */
+.jp-term {
+  font-family: var(--font-elegant-jp);
+  font-weight: 500;
+}
+
+/* Estilos para el logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.logo-image {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.japanese-font {
+  font-family: var(--font-accent);
+  font-size: 1.5rem;
+  margin-bottom: 2px;
+  letter-spacing: 1px;
+  color: var(--beige);
+}
+
+.latin-font {
+  font-family: var(--font-title);
+  font-size: 1rem;
+  letter-spacing: 1px;
 }
 
 /* Contenedor principal */
 .main-container {
   display: flex;
   height: 100vh;
+  width: 100%;
   position: relative;
+  overflow: hidden;
+}
+
+/* Estilos para FlyingLeaves */
+.flying-leaves {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+}
+
+/* Estilos mejorados para el hero-column */
+#hero-column {
+  position: relative;
+  /* background-color: rgba(20, 20, 20, 0.8); */
+  overflow: hidden;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+.hero-text-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#hero-column .hero-subtitle {
+  max-width: 85%;
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+#hero-column h1 {
+  position: relative;
+  background: linear-gradient(90deg, #f5f5dc 0%, #e0e0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1.5rem;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+#hero-column .hanko-button {
+  margin-top: 0.5rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Patrón Seigaiha - Eliminado temporalmente */
@@ -198,52 +358,6 @@ Animaciones más dinámicas para los bambúes
 .column-content {
   max-width: 500px;
   margin: 0 auto;
-}
-
-/* Tipografía */
-h1,
-h2,
-h3,
-h4 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-}
-
-h1 {
-  font-size: 3rem;
-  letter-spacing: -0.5px;
-  line-height: 1.2;
-}
-
-h2 {
-  font-size: 2.2rem;
-  position: relative;
-  display: inline-block;
-  margin-bottom: 2rem;
-}
-
-h2:after {
-  content: '';
-  position: absolute;
-  bottom: -10px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--red);
-  transform: scaleX(0.6);
-  transform-origin: left;
-}
-
-h3 {
-  font-size: 1.4rem;
-  margin-bottom: 0.8rem;
-}
-
-p {
-  margin-bottom: 1.5rem;
-  font-size: 0.95rem;
-  line-height: 1.5;
 }
 
 /* Cada card tiene un tamaño diferente que se ajusta al tamaño máximo del contenedor */
@@ -572,7 +686,8 @@ p {
 @media (max-width: 900px) {
   .main-container {
     flex-direction: column;
-    height: auto;
+    height: 100vh; /* Mantener altura completa en móviles */
+    overflow-y: auto; /* Permitir scroll solo en móviles */
   }
 
   .column {
