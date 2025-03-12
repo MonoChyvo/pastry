@@ -1,0 +1,638 @@
+/* Variables globales */
+:root {
+  --green-light: #6ccb79;
+  --green-dark: #2caf4f;
+  --beige: #f5f5dc;
+  --red: #d72925;
+  --red-lacquer: linear-gradient(135deg, #d72925 30%, #f04a46 50%, #d72925 70%);
+  --spacing: 2rem;
+
+  /* Variables para la aleatoriedad de los bambúes */
+  --bamboo-sway-time-1: 5s;
+  --bamboo-sway-time-2: 7s;
+  --bamboo-sway-distance-1: 6px;
+  --bamboo-sway-distance-2: 4px;
+}
+
+/* Reset global */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Noto Sans', sans-serif;
+  background-color: #212121;
+  color: #f5f5f5;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Contenedor principal */
+.main-container {
+  display: flex;
+  height: 100vh;
+  position: relative;
+}
+
+/* Patrón Seigaiha - Eliminado temporalmente */
+.seigaiha-pattern {
+  display: none;
+}
+
+/* Actualización para los elementos highlight con imágenes PNG de trazos de brocha */
+.highlight {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.highlight:after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: -4px;
+  width: calc(100% + 8px);
+  height: 6px; /* Ajusta según el tamaño de tu imagen */
+  background-image: url('./assets/trazo.png'); /* Imagen del trazo de brocha */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.9;
+}
+
+.highlight:nth-of-type(2n):after {
+  background-image: url('./assets/trazo.png');
+  bottom: -3px;
+  height: 7px;
+}
+
+.highlight:nth-of-type(3n):after {
+  background-image: url('./assets/trazo.png');
+  bottom: -4px;
+  height: 8px;
+}
+
+/*
+Cada highlight tiene un trazo de brocha ligeramente diferente
+*/
+
+/* Elementos decorativos - Bambú más ancho y dinámico */
+.bamboo-divider {
+  width: 10px; /* Más ancho que antes */
+  background: linear-gradient(to bottom, transparent, var(--green-dark), transparent);
+  margin: 0 2rem;
+  position: relative;
+  overflow: hidden;
+  animation: bambooSway1 var(--bamboo-sway-time-1) infinite ease-in-out;
+}
+
+.bamboo-divider::before,
+.bamboo-divider::after {
+  content: '';
+  position: absolute;
+  width: 24px; /* Más ancho */
+  height: 4px; /* Más alto */
+  background-color: var(--green-dark);
+  left: -7px;
+  border-radius: 2px;
+}
+
+.bamboo-divider::before {
+  top: 30%;
+  animation: bambooNodeSway1 var(--bamboo-sway-time-2) infinite ease-in-out;
+}
+
+.bamboo-divider::after {
+  top: 70%;
+  animation: bambooNodeSway2 calc(var(--bamboo-sway-time-1) * 1.2) infinite ease-in-out reverse;
+}
+
+/*
+Segunda barra de bambú con animación distinta
+*/
+
+.bamboo-divider:nth-of-type(2) {
+  animation: bambooSway2 var(--bamboo-sway-time-2) infinite ease-in-out;
+  animation-delay: 0.7s;
+}
+
+.bamboo-divider:nth-of-type(2)::before {
+  animation: bambooNodeSway2 var(--bamboo-sway-time-1) infinite ease-in-out;
+  animation-delay: 0.5s;
+}
+
+.bamboo-divider:nth-of-type(2)::after {
+  animation: bambooNodeSway1 calc(var(--bamboo-sway-time-2) * 0.9) infinite ease-in-out;
+  animation-delay: 0.3s;
+}
+
+/*
+Animaciones más dinámicas para los bambúes
+*/
+@keyframes bambooSway1 {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(calc(var(--bamboo-sway-distance-1) * 0.7)) rotate(1deg);
+  }
+  50% {
+    transform: translateX(calc(var(--bamboo-sway-distance-1) * -0.5)) rotate(-0.5deg);
+  }
+  75% {
+    transform: translateX(var(--bamboo-sway-distance-1)) rotate(0.7deg);
+  }
+}
+
+@keyframes bambooSway2 {
+  0%,
+  100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  20% {
+    transform: translateX(calc(var(--bamboo-sway-distance-2) * -0.8)) rotate(-0.8deg);
+  }
+  60% {
+    transform: translateX(var(--bamboo-sway-distance-2)) rotate(1deg);
+  }
+  80% {
+    transform: translateX(calc(var(--bamboo-sway-distance-2) * -0.5)) rotate(-0.3deg);
+  }
+}
+
+@keyframes bambooNodeSway1 {
+  0%,
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+  50% {
+    transform: translateX(3px) scaleX(1.1);
+  }
+}
+
+@keyframes bambooNodeSway2 {
+  0%,
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+  50% {
+    transform: translateX(-2px) scaleX(1.05);
+  }
+}
+
+/* Columnas */
+.column {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 33.333vw;
+}
+
+.column-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Tipografía */
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 3rem;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 2.2rem;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 2rem;
+}
+
+h2:after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--red);
+  transform: scaleX(0.6);
+  transform-origin: left;
+}
+
+h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+p {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Cada card tiene un tamaño diferente que se ajusta al tamaño máximo del contenedor */
+.simplified-card {
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 1.2rem;
+}
+
+/* Ajuste a imagen más pequeña y sutil */
+.simplified-card .product-image {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 0.75rem;
+  overflow: hidden;
+}
+
+.simplified-card .product-title {
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #e0e0e0;
+  font-weight: 400;
+}
+
+/* Estilo de piedra de río para tarjetas */
+.product-card {
+  background-color: #2a2a2a;
+  border: none;
+  padding: 1.2rem 0.8rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  z-index: 1;
+  border-radius: 28% 72% 34% 66% / 63% 30% 70% 37%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 160px;
+}
+
+.product-card:hover {
+  transform: translateY(-3px) rotate(2deg);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  background-color: #353535;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  flex-shrink: 0;
+  border-radius: 50% 30% 45% 40%;
+  overflow: hidden;
+  background-color: #3a3a3a;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.05);
+}
+
+.product-info {
+  flex-grow: 1;
+}
+
+.product-title {
+  margin-bottom: 0.3rem;
+}
+
+.product-desc {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.product-price {
+  font-weight: 500;
+  color: var(--green-dark);
+  font-size: 1.1rem;
+}
+
+/* About Column */
+.about-image {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.about-image:hover {
+  filter: grayscale(70%);
+}
+
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-content p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.contact-info {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+.contact-item {
+  margin-bottom: 0.5rem;
+}
+
+.water-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.water-effect:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-100%);
+  animation: waterFlow 5s infinite linear;
+}
+
+/* Animaciones */
+@keyframes waterFlow {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes bambooSway {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding-top: 2rem;
+  margin-top: auto;
+  font-size: 0.8rem;
+  color: #777;
+}
+
+/* Yugen elements */
+.yugen-element {
+  position: absolute;
+  opacity: 0.05;
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+.yugen-1 {
+  width: 200px;
+  height: 200px;
+  background: var(--green-light);
+  border-radius: 50%;
+  top: 10%;
+  right: 10%;
+}
+
+.yugen-2 {
+  width: 150px;
+  height: 150px;
+  background: var(--red);
+  border-radius: 50%;
+  bottom: 10%;
+  left: 10%;
+}
+
+/* Actualizaciones para las hojas */
+.leaf {
+  position: absolute;
+  top: -50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+  opacity: 0.8;
+  /* Variables personalizadas con valores predeterminados */
+  --wind-factor: 1;
+  --rotate-factor: 1;
+  --path-complexity: 1;
+}
+
+/* Tres tipos diferentes de hojas */
+.leaf-type-1 {
+  background-image: url('./assets/leaf.png');
+  animation: fallType1 linear forwards;
+}
+
+.leaf-type-2 {
+  background-image: url('./assets/leaf.png');
+  animation: fallType2 linear forwards;
+}
+
+.leaf-type-3 {
+  background-image: url('./assets/leaf.png');
+  animation: fallType3 linear forwards;
+}
+
+/* Animaciones de caída con movimientos zigzag más aleatorios */
+@keyframes fallType1 {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+    transform: translateY(10vh) translateX(calc(var(--wind-factor) * 5vw)) rotate(calc(var(--rotate-factor) * 15deg));
+  }
+  25% {
+    transform: translateY(25vh) translateX(calc(var(--wind-factor) * -15vw)) rotate(calc(var(--rotate-factor) * 45deg));
+  }
+  40% {
+    transform: translateY(40vh) translateX(calc(var(--wind-factor) * 5vw)) rotate(calc(var(--rotate-factor) * 70deg));
+  }
+  60% {
+    transform: translateY(60vh) translateX(calc(var(--wind-factor) * -10vw)) rotate(calc(var(--rotate-factor) * 100deg));
+  }
+  75% {
+    transform: translateY(75vh) translateX(calc(var(--wind-factor) * -20vw)) rotate(calc(var(--rotate-factor) * 135deg));
+    opacity: 0.8;
+  }
+  90% {
+    transform: translateY(90vh) translateX(calc(var(--wind-factor) * 8vw)) rotate(calc(var(--rotate-factor) * 160deg));
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(110vh) translateX(calc(var(--wind-factor) * 5vw)) rotate(calc(var(--rotate-factor) * 180deg));
+    opacity: 0;
+  }
+}
+
+@keyframes fallType2 {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.8;
+    transform: translateY(15vh) translateX(calc(var(--wind-factor) * 10vw)) rotate(calc(var(--rotate-factor) * -30deg));
+  }
+  30% {
+    transform: translateY(30vh) translateX(calc(var(--wind-factor) * -5vw)) rotate(calc(var(--rotate-factor) * -60deg));
+  }
+  50% {
+    transform: translateY(50vh) translateX(calc(var(--wind-factor) * 15vw)) rotate(calc(var(--rotate-factor) * -90deg));
+  }
+  70% {
+    transform: translateY(70vh) translateX(calc(var(--wind-factor) * -10vw))
+      rotate(calc(var(--rotate-factor) * -120deg));
+  }
+  85% {
+    transform: translateY(85vh) translateX(calc(var(--wind-factor) * 8vw)) rotate(calc(var(--rotate-factor) * -160deg));
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(110vh) translateX(calc(var(--wind-factor) * 10vw))
+      rotate(calc(var(--rotate-factor) * -200deg));
+    opacity: 0;
+  }
+}
+
+@keyframes fallType3 {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.8;
+    transform: translateY(20vh) translateX(calc(var(--wind-factor) * 12vw)) rotate(calc(var(--rotate-factor) * 40deg));
+  }
+  45% {
+    transform: translateY(45vh) translateX(calc(var(--wind-factor) * -15vw)) rotate(calc(var(--rotate-factor) * 80deg));
+  }
+  75% {
+    transform: translateY(75vh) translateX(calc(var(--wind-factor) * 20vw)) rotate(calc(var(--rotate-factor) * 130deg));
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(110vh) translateX(calc(var(--wind-factor) * -8vw)) rotate(calc(var(--rotate-factor) * 180deg));
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .main-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .column {
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .bamboo-divider {
+    width: 100%;
+    height: 10px; /* Más alto en el modo responsive */
+    margin: 0;
+    background: linear-gradient(to right, transparent, var(--green-dark), transparent);
+    animation: bambooSwayHorizontal var(--bamboo-sway-time-1) infinite ease-in-out;
+  }
+
+  .bamboo-divider::before,
+  .bamboo-divider::after {
+    width: 4px;
+    height: 24px;
+    left: auto;
+    top: -7px;
+  }
+
+  .bamboo-divider::before {
+    left: 30%;
+    animation: bambooNodeSwayVertical1 var(--bamboo-sway-time-2) infinite ease-in-out;
+  }
+
+  .bamboo-divider::after {
+    left: 70%;
+    animation: bambooNodeSwayVertical2 calc(var(--bamboo-sway-time-1) * 1.3) infinite ease-in-out;
+  }
+
+  @keyframes bambooSwayHorizontal {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(var(--bamboo-sway-distance-1));
+    }
+  }
+
+  @keyframes bambooNodeSwayVertical1 {
+    0%,
+    100% {
+      transform: translateY(0) scaleY(1);
+    }
+    50% {
+      transform: translateY(2px) scaleY(1.1);
+    }
+  }
+
+  @keyframes bambooNodeSwayVertical2 {
+    0%,
+    100% {
+      transform: translateY(0) scaleY(1);
+    }
+    50% {
+      transform: translateY(-3px) scaleY(1.05);
+    }
+  }
+}
