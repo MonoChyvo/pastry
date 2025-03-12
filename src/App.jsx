@@ -113,6 +113,7 @@ const FlyingLeaves = () => {
       const windFactor = 0.3 + Math.random() * 2.4 // Entre 0.3 y 2.7 (más variación)
       const rotateFactor = 0.5 + Math.random() * 2.0 // Entre 0.5 y 2.5 (más variación)
       const pathComplexity = 0.4 + Math.random() * 1.8 // Entre 0.4 y 2.2 (más variación)
+      const zigzagDirection = Math.random() > 0.5 ? 1 : -1 // Dirección zigzag aleatoria
 
       return {
         id,
@@ -125,6 +126,7 @@ const FlyingLeaves = () => {
         windFactor,
         rotateFactor,
         pathComplexity,
+        zigzagDirection,
       }
     }
 
@@ -188,6 +190,7 @@ const FlyingLeaves = () => {
             '--wind-factor': leaf.windFactor,
             '--rotate-factor': leaf.rotateFactor,
             '--path-complexity': leaf.pathComplexity,
+            '--zigzag-x': leaf.zigzagDirection,
           }}
         />
       ))}
@@ -201,13 +204,13 @@ const App = () => {
   useEffect(() => {
     const root = document.documentElement
 
-    // Asignar tiempos aleatorios para el balanceo de bambú
-    root.style.setProperty('--bamboo-sway-time-1', `${Math.random() * 4 + Math.random() * 7}s`)
-    root.style.setProperty('--bamboo-sway-time-2', `${Math.random() * 6 + Math.random() * 4}s`)
+    // Asignar tiempos aleatorios para un balanceo de bambú más suave y fluido
+    root.style.setProperty('--bamboo-sway-time-1', `${Math.random() * 3 + 6}s`)
+    root.style.setProperty('--bamboo-sway-time-2', `${Math.random() * 2 + 8}s`)
 
-    // Asignar distancias aleatorias para el balanceo de bambú
-    root.style.setProperty('--bamboo-sway-distance-1', `${Math.random() * 5 + Math.random() * 4}px`)
-    root.style.setProperty('--bamboo-sway-distance-2', `${Math.random() * 3 + Math.random() * 2}px`)
+    // Asignar distancias sutiles para el balanceo, para transiciones más naturales
+    root.style.setProperty('--bamboo-sway-distance-1', `${Math.random() * 2 + 2}px`)
+    root.style.setProperty('--bamboo-sway-distance-2', `${Math.random() * 1.5 + 1.5}px`)
 
     // Nota: Las configuraciones para prevenir scrolling se movieron a CSS
   }, [])

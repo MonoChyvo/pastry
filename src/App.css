@@ -33,7 +33,7 @@
 /* Estilo global del cuerpo para prevenir desplazamiento */
 body {
   font-family: var(--font-body);
-  background-color: #212121;
+  background-color: #dcecbbcd;
   color: #f5f5f5;
   line-height: 1.6;
   overflow: hidden;
@@ -142,11 +142,27 @@ h4.jp-title {
   z-index: 10;
 }
 
-/* Estilos mejorados para el hero-column */
+/* Estilos mejorados para las columnas */
 #hero-column {
   position: relative;
-  /* background-color: rgba(20, 20, 20, 0.8); */
+  background-color: rgba(19, 95, 5, 0.6);
   overflow: hidden;
+  z-index: 100;
+}
+
+#products-column {
+  position: relative;
+  background-color: rgba(62, 165, 44, 0.6);
+  overflow: hidden;
+  z-index: 100;
+}
+
+#about-column {
+  position: relative;
+  background-color: rgba(223, 254, 217, 0.6);
+  color: #212121;
+  overflow: hidden;
+  z-index: 100;
 }
 
 .hero-content {
@@ -176,6 +192,7 @@ h4.jp-title {
   position: relative;
   background: linear-gradient(90deg, #f5f5dc 0%, #e0e0c0 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 1.5rem;
   animation: fadeIn 1s ease-out forwards;
@@ -218,8 +235,6 @@ h4.jp-title {
   background-image: url('./assets/trazo.png'); /* Imagen del trazo de brocha */
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.9;
 }
 
 .highlight:nth-of-type(2n):after {
@@ -318,9 +333,6 @@ Animaciones más dinámicas para los bambúes
   60% {
     transform: translateX(var(--bamboo-sway-distance-2)) rotate(1deg);
   }
-  80% {
-    transform: translateX(calc(var(--bamboo-sway-distance-2) * -0.5)) rotate(-0.3deg);
-  }
 }
 
 @keyframes bambooNodeSway1 {
@@ -393,7 +405,8 @@ Animaciones más dinámicas para los bambúes
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  z-index: 1;
+  z-index: 20;
+  position: relative;
   border-radius: 28% 72% 34% 66% / 63% 30% 70% 37%;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   max-width: 160px;
@@ -410,8 +423,8 @@ Animaciones más dinámicas para los bambúes
   height: 100px;
   flex-shrink: 0;
   border-radius: 50% 30% 45% 40%;
-  overflow: hidden;
   background-color: #3a3a3a;
+  border: none;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -569,6 +582,7 @@ Animaciones más dinámicas para los bambúes
   --wind-factor: 1;
   --rotate-factor: 1;
   --path-complexity: 1;
+  --zigzag-x: 1; /* Nueva variable para controlar dirección del zigzag */
 }
 
 /* Tres tipos diferentes de hojas */
@@ -587,7 +601,7 @@ Animaciones más dinámicas para los bambúes
   animation: fallType3 linear forwards;
 }
 
-/* Animaciones de caída con movimientos zigzag más aleatorios */
+/* Animaciones de caída con movimientos zigzag mejorados */
 @keyframes fallType1 {
   0% {
     transform: translateY(0) translateX(0) rotate(0deg);
@@ -595,27 +609,34 @@ Animaciones más dinámicas para los bambúes
   }
   10% {
     opacity: 0.8;
-    transform: translateY(10vh) translateX(calc(var(--wind-factor) * 5vw)) rotate(calc(var(--rotate-factor) * 15deg));
+    transform: translateY(10vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 5vw))
+      rotate(calc(var(--rotate-factor) * 15deg));
   }
   25% {
-    transform: translateY(25vh) translateX(calc(var(--wind-factor) * -15vw)) rotate(calc(var(--rotate-factor) * 45deg));
+    transform: translateY(25vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -15vw))
+      rotate(calc(var(--rotate-factor) * 45deg));
   }
   40% {
-    transform: translateY(40vh) translateX(calc(var(--wind-factor) * 5vw)) rotate(calc(var(--rotate-factor) * 70deg));
+    transform: translateY(40vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 10vw))
+      rotate(calc(var(--rotate-factor) * 70deg));
   }
   60% {
-    transform: translateY(60vh) translateX(calc(var(--wind-factor) * -10vw)) rotate(calc(var(--rotate-factor) * 100deg));
+    transform: translateY(60vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -10vw))
+      rotate(calc(var(--rotate-factor) * 100deg));
   }
   75% {
-    transform: translateY(75vh) translateX(calc(var(--wind-factor) * -20vw)) rotate(calc(var(--rotate-factor) * 135deg));
+    transform: translateY(75vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 15vw))
+      rotate(calc(var(--rotate-factor) * 135deg));
     opacity: 0.8;
   }
   90% {
-    transform: translateY(90vh) translateX(calc(var(--wind-factor) * 8vw)) rotate(calc(var(--rotate-factor) * 160deg));
+    transform: translateY(90vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -8vw))
+      rotate(calc(var(--rotate-factor) * 160deg));
     opacity: 0.5;
   }
   100% {
-    transform: translateY(110vh) translateX(calc(var(--wind-factor) * 5vw)) rotate(calc(var(--rotate-factor) * 180deg));
+    transform: translateY(110vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 5vw))
+      rotate(calc(var(--rotate-factor) * 180deg));
     opacity: 0;
   }
 }
@@ -627,24 +648,28 @@ Animaciones más dinámicas para los bambúes
   }
   15% {
     opacity: 0.8;
-    transform: translateY(15vh) translateX(calc(var(--wind-factor) * 10vw)) rotate(calc(var(--rotate-factor) * -30deg));
+    transform: translateY(15vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 12vw))
+      rotate(calc(var(--rotate-factor) * -30deg));
   }
   30% {
-    transform: translateY(30vh) translateX(calc(var(--wind-factor) * -5vw)) rotate(calc(var(--rotate-factor) * -60deg));
+    transform: translateY(30vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -8vw))
+      rotate(calc(var(--rotate-factor) * -60deg));
   }
   50% {
-    transform: translateY(50vh) translateX(calc(var(--wind-factor) * 15vw)) rotate(calc(var(--rotate-factor) * -90deg));
+    transform: translateY(50vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 15vw))
+      rotate(calc(var(--rotate-factor) * -90deg));
   }
   70% {
-    transform: translateY(70vh) translateX(calc(var(--wind-factor) * -10vw))
+    transform: translateY(70vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -10vw))
       rotate(calc(var(--rotate-factor) * -120deg));
   }
   85% {
-    transform: translateY(85vh) translateX(calc(var(--wind-factor) * 8vw)) rotate(calc(var(--rotate-factor) * -160deg));
+    transform: translateY(85vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 8vw))
+      rotate(calc(var(--rotate-factor) * -160deg));
     opacity: 0.6;
   }
   100% {
-    transform: translateY(110vh) translateX(calc(var(--wind-factor) * 10vw))
+    transform: translateY(110vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -10vw))
       rotate(calc(var(--rotate-factor) * -200deg));
     opacity: 0;
   }
@@ -657,17 +682,25 @@ Animaciones más dinámicas para los bambúes
   }
   20% {
     opacity: 0.8;
-    transform: translateY(20vh) translateX(calc(var(--wind-factor) * 12vw)) rotate(calc(var(--rotate-factor) * 40deg));
+    transform: translateY(20vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 12vw))
+      rotate(calc(var(--rotate-factor) * 40deg));
   }
   45% {
-    transform: translateY(45vh) translateX(calc(var(--wind-factor) * -15vw)) rotate(calc(var(--rotate-factor) * 80deg));
+    transform: translateY(45vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -15vw))
+      rotate(calc(var(--rotate-factor) * 80deg));
   }
-  75% {
-    transform: translateY(75vh) translateX(calc(var(--wind-factor) * 20vw)) rotate(calc(var(--rotate-factor) * 130deg));
+  65% {
+    transform: translateY(65vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 18vw))
+      rotate(calc(var(--rotate-factor) * 110deg));
+  }
+  85% {
+    transform: translateY(85vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -12vw))
+      rotate(calc(var(--rotate-factor) * 150deg));
     opacity: 0.7;
   }
   100% {
-    transform: translateY(110vh) translateX(calc(var(--wind-factor) * -8vw)) rotate(calc(var(--rotate-factor) * 180deg));
+    transform: translateY(110vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 8vw))
+      rotate(calc(var(--rotate-factor) * 180deg));
     opacity: 0;
   }
 }
@@ -706,9 +739,6 @@ Animaciones más dinámicas para los bambúes
   .bamboo-divider::before,
   .bamboo-divider::after {
     width: 4px;
-    height: 24px;
-    left: auto;
-    top: -7px;
   }
 
   .bamboo-divider::before {
