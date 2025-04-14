@@ -1,11 +1,31 @@
 /* Variables globales */
 :root {
+  /* Colores principales */
   --green-light: #6ccb79;
   --green-dark: #2caf4f;
   --beige: #f5f5dc;
   --red: #d72925;
   --red-lacquer: linear-gradient(135deg, #d72925 30%, #f04a46 50%, #d72925 70%);
   --spacing: 2rem;
+
+  /* Colores para tema oscuro */
+  --dark-bg-primary: #121212;
+  --dark-bg-secondary: #1e1e1e;
+  --dark-bg-tertiary: #2a2a2a;
+  --dark-bg-card: #252525;
+  --dark-text-primary: #e0e0e0;
+  --dark-text-secondary: #b0b0b0;
+  --dark-border: #333333;
+  --dark-hover: #3a3a3a;
+
+  /* Colores de acento para tema oscuro */
+  --green-light-dark: #5ab968; /* Verde claro ajustado para tema oscuro */
+  --green-dark-dark: #259e3e; /* Verde oscuro ajustado para tema oscuro */
+  --beige-dark: #d5d5b0; /* Beige ajustado para tema oscuro */
+
+  /* Sombras */
+  --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.25);
+  --shadow-strong: 0 8px 24px rgba(0, 0, 0, 0.4);
 
   /* Variables de tipografía */
   --font-body: 'Noto Sans', sans-serif;
@@ -21,6 +41,10 @@
   --bamboo-sway-time-2: 7s;
   --bamboo-sway-distance-1: 6px;
   --bamboo-sway-distance-2: 4px;
+
+  /* Variables para animaciones */
+  --transition-duration: 300ms;
+  --transition-timing: ease;
 }
 
 /* Reset global */
@@ -30,17 +54,18 @@
   box-sizing: border-box;
 }
 
-/* Estilo global del cuerpo para prevenir desplazamiento */
+/* Estilo global del cuerpo para prevenir desplazamiento horizontal */
 body {
   font-family: var(--font-body);
   background-color: #dcecbbcd;
   color: #f5f5f5;
   line-height: 1.6;
-  overflow: hidden;
+  overflow-x: hidden; /* Prevenir scroll horizontal */
+  overflow-y: auto; /* Permitir scroll vertical */
   margin: 0;
   padding: 0;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
 }
 
 /* Clases de tipografía japonesa */
@@ -127,7 +152,117 @@ h4.jp-title {
   height: 100vh;
   width: 100%;
   position: relative;
-  overflow: hidden;
+  overflow: auto; /* Cambiado de 'hidden' a 'auto' para permitir scroll */
+}
+
+/* Estilos mejorados para el componente de carga */
+.loading-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  transition: opacity 0.3s ease-out;
+}
+
+.loading-spinner-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border-top-color: var(--green-dark);
+  animation: spin 1s ease-in-out infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-text {
+  font-size: 1rem;
+  color: var(--green-dark);
+  margin: 0;
+  font-family: var(--font-jp), sans-serif;
+}
+
+/* Estilos para el componente de error */
+.error-fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.95);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  padding: 2rem;
+  text-align: center;
+}
+
+.error-fallback h2 {
+  color: #d32f2f;
+  margin-bottom: 1rem;
+  font-family: var(--font-jp), sans-serif;
+}
+
+.error-fallback p {
+  margin-bottom: 2rem;
+  max-width: 600px;
+  color: #666;
+}
+
+.error-fallback button {
+  padding: 0.75rem 1.5rem;
+  background-color: var(--green-dark);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: var(--font-jp), sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.error-fallback button:hover {
+  background-color: var(--green-light);
+}
+
+.loading-spinner::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid var(--green-light);
+  border-top-color: var(--green-dark);
+  animation: spinner 1s linear infinite;
+  position: absolute;
+  left: -50px;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* Estilos para FlyingLeaves */
@@ -271,7 +406,6 @@ Cada highlight tiene un trazo de brocha ligeramente diferente
   height: 4px; /* Más alto */
   background-color: var(--green-dark);
   left: -7px;
-  border-radius: 2px;
 }
 
 .bamboo-divider::before {
@@ -705,32 +839,42 @@ Animaciones más dinámicas para los bambúes
   }
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-  h1 {
-    font-size: 2.5rem;
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body,
+  #root {
+    width: 100%;
   }
 
-  h2 {
-    font-size: 1.8rem;
+  body {
+    overflow-y: auto;
+    height: auto;
   }
-}
 
-@media (max-width: 900px) {
+  .hero-column {
+    height: auto !important;
+    overflow-y: auto;
+  }
+
   .main-container {
     flex-direction: column;
-    height: 100vh; /* Mantener altura completa en móviles */
-    overflow-y: auto; /* Permitir scroll solo en móviles */
+    height: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
   }
 
   .column {
     height: auto;
     min-height: 100vh;
+    padding: 1rem;
+    max-width: 100%;
+    overflow-y: visible;
   }
 
   .bamboo-divider {
     width: 100%;
-    height: 10px; /* Más alto en el modo responsive */
+    height: 10px;
     margin: 0;
     background: linear-gradient(to right, transparent, var(--green-dark), transparent);
     animation: bambooSwayHorizontal var(--bamboo-sway-time-1) infinite ease-in-out;

@@ -1,0 +1,373 @@
+/* Estilos para las páginas modernas */
+
+/* Contenedor principal */
+.modern-page-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+  overflow-x: hidden;
+}
+
+/* Contenido principal */
+.modern-page-content {
+  padding: 5rem 2rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Encabezado de página */
+.modern-page-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.modern-page-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.modern-page-title .jp-title {
+  font-family: var(--font-title-jp);
+  font-size: 2.5rem;
+  color: var(--green-light);
+}
+
+.modern-page-title .latin-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--dark-text-primary);
+  margin-top: 0.5rem;
+}
+
+.modern-page-description {
+  font-size: 1.1rem;
+  color: var(--dark-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Estilos para la página de productos */
+.modern-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.modern-product-card {
+  background-color: var(--dark-bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.modern-product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+}
+
+.product-image-container {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.product-image-direct {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.modern-product-card:hover .product-image-container img {
+  transform: scale(1.1);
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.modern-product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.jp-name {
+  font-family: var(--font-elegant-jp);
+  font-size: 1.5rem;
+  color: white;
+}
+
+.product-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-text-primary);
+}
+
+.product-short-desc {
+  font-size: 0.9rem;
+  color: var(--dark-text-secondary);
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.product-price {
+  font-weight: 600;
+  color: var(--green-light);
+  font-size: 1.1rem;
+}
+
+.no-products-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background-color: rgba(44, 175, 79, 0.05);
+  border-radius: 12px;
+  color: #666;
+}
+
+/* Estilos para la página Nosotros */
+.modern-about-content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.modern-philosophy-section {
+  margin-bottom: 2rem;
+}
+
+.philosophy-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.philosophy-card {
+  background-color: var(--dark-bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 300px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.philosophy-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+  background-color: var(--dark-hover);
+}
+
+.philosophy-symbol {
+  font-family: var(--font-title-jp);
+  font-size: 3rem;
+  color: var(--green-light);
+  margin-bottom: 1rem;
+}
+
+.philosophy-card h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--dark-text-primary);
+}
+
+.philosophy-card p {
+  color: var(--dark-text-secondary);
+  line-height: 1.6;
+}
+
+.modern-history-section {
+  background-color: var(--dark-bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.section-subtitle {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--green-light);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.history-content {
+  color: var(--dark-text-secondary);
+  line-height: 1.7;
+}
+
+.history-content p {
+  margin-bottom: 1.2rem;
+}
+
+/* Estilos para la página de contacto */
+.modern-contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.modern-contact-info,
+.modern-contact-form {
+  background-color: var(--dark-bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.modern-contact-info h2,
+.modern-contact-form h2 {
+  font-family: var(--font-title);
+  font-size: 1.8rem;
+  color: var(--green-light);
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.contact-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-label {
+  font-weight: 500;
+  color: var(--dark-text-secondary);
+  margin-bottom: 0.3rem;
+}
+
+.contact-value {
+  color: var(--dark-text-primary);
+}
+
+/* Formulario */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--dark-text-secondary);
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--dark-border);
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  background-color: var(--dark-bg-tertiary);
+  color: var(--dark-text-primary);
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--green-dark);
+  box-shadow: 0 0 0 2px rgba(44, 175, 79, 0.3);
+}
+
+.modern-submit-button {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  background-color: var(--green-dark);
+  color: var(--dark-text-primary);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-soft);
+  align-self: center;
+}
+
+.modern-submit-button:hover {
+  background-color: var(--green-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-strong);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .philosophy-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .modern-page-content {
+    padding: 5rem 1.5rem 2rem;
+  }
+
+  .modern-page-title .jp-title {
+    font-size: 2rem;
+  }
+
+  .modern-page-title .latin-title {
+    font-size: 1.7rem;
+  }
+
+  .modern-contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .modern-products-grid {
+    grid-template-columns: 1fr;
+  }
+}

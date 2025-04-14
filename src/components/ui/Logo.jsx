@@ -1,5 +1,5 @@
 import React from 'react'
-import logoImage from '../assets/sello.png' // Importa la imagen para asegurarnos que está correctamente referenciada
+import logoImage from '../../assets/sello.png' // Importa la imagen para asegurarnos que está correctamente referenciada
 
 const Logo = () => (
   <div className='logo'>

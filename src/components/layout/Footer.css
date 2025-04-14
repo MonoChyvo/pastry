@@ -1,0 +1,69 @@
+/* Estilos para el footer */
+.modern-footer {
+  background-color: #111;
+  color: var(--dark-text-primary);
+  padding: 2rem;
+  border-top: 1px solid var(--dark-border);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer-logo {
+  transform: scale(0.8);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  color: var(--dark-text-secondary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--green-light);
+  text-shadow: 0 0 8px rgba(108, 203, 121, 0.3);
+}
+
+.footer-social {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.social-icon {
+  color: var(--dark-text-secondary);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  color: var(--green-light);
+  text-shadow: 0 0 8px rgba(108, 203, 121, 0.3);
+}
+
+.footer-copyright {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  opacity: 0.5;
+  color: var(--dark-text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-links,
+  .footer-social {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

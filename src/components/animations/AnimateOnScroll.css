@@ -1,0 +1,149 @@
+/**
+ * Estilos optimizados para AnimateOnScroll
+ *
+ * Características:
+ * - Optimizaciones de rendimiento con will-change, contain, etc.
+ * - Transiciones suaves y eficientes
+ * - Soporte para preferencias de reducción de movimiento
+ * - Animaciones variadas y personalizables
+ */
+
+.animate-on-scroll {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition-property: transform, opacity;
+  transition-duration: var(--animation-duration, 0.4s);
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); /* Mejorado para animaciones más suaves */
+  transition-delay: var(--animation-delay, 0s);
+  backface-visibility: hidden;
+  transform-style: flat; /* Optimización de rendimiento */
+  contain: layout style; /* Optimización de rendimiento */
+  pointer-events: none; /* Evita problemas de interacción durante la animación */
+}
+
+/* Restaurar pointer-events cuando la animación ha terminado */
+.animate-on-scroll.visible {
+  pointer-events: auto;
+}
+
+/* Animación de aparición desde abajo */
+.animate-on-scroll.fade-up {
+  transform: translateY(12px); /* Reducido para animaciones más sutiles */
+}
+
+.animate-on-scroll.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animación de aparición desde la izquierda */
+.animate-on-scroll.fade-right {
+  transform: translateX(-12px); /* Reducido para animaciones más sutiles */
+}
+
+.animate-on-scroll.fade-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animación de aparición desde la derecha */
+.animate-on-scroll.fade-left {
+  transform: translateX(12px); /* Reducido para animaciones más sutiles */
+}
+
+.animate-on-scroll.fade-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Animación de zoom */
+.animate-on-scroll.zoom-in {
+  transform: scale(0.9);
+}
+
+.animate-on-scroll.zoom-in.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Animación de aparición con rotación */
+.animate-on-scroll.rotate-in {
+  transform: rotate(-5deg) scale(0.95);
+}
+
+.animate-on-scroll.rotate-in.visible {
+  opacity: 1;
+  transform: rotate(0) scale(1);
+}
+
+/* Animación de aparición con desenfoque */
+.animate-on-scroll.blur-in {
+  opacity: 0;
+  filter: blur(10px);
+}
+
+.animate-on-scroll.blur-in.visible {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Animación de rebote (optimizada) */
+.animate-on-scroll.bounce {
+  transform: translateY(20px); /* Reducido para animaciones más sutiles */
+}
+
+.animate-on-scroll.bounce.visible {
+  opacity: 1;
+  animation: bounce-effect 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  animation-delay: var(--animation-delay, 0s);
+}
+
+@keyframes bounce-effect {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+  80% {
+    transform: translateY(4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Soporte para preferencias de reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .animate-on-scroll {
+    transition: opacity 0.1s ease-out !important;
+    transform: none !important;
+    animation: none !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Animación de deslizamiento suave (optimizada) */
+.animate-on-scroll.slide-up {
+  transform: translateY(50px); /* Reducido para animaciones más sutiles */
+}
+
+.animate-on-scroll.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Animación de aparición con sombra */
+.animate-on-scroll.shadow-in {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transform: translateY(20px);
+}
+
+.animate-on-scroll.shadow-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}

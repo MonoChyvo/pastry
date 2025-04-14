@@ -1,0 +1,229 @@
+/* Estilos para la navegación moderna */
+
+.modern-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.2rem 2rem;
+  transition: all 0.3s ease, transform 0.4s ease;
+  background: rgba(18, 18, 18, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(44, 175, 79, 0.2);
+  transform: translateY(0);
+  will-change: transform;
+}
+
+/* Clase para ocultar la barra de navegación */
+.modern-header.hidden {
+  transform: translateY(-100%);
+}
+
+/* Mostrar la barra de navegación al hacer hover */
+@media (hover: hover) {
+  /* Área sensible en la parte superior de la pantalla */
+  .nav-reveal-area {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 15px;
+    z-index: 999;
+  }
+
+  /* Mostrar la barra cuando se hace hover en el área sensible o en la propia barra */
+  .nav-reveal-area:hover + .modern-header.hidden,
+  .modern-header.hidden:hover {
+    transform: translateY(0);
+  }
+}
+
+.modern-header.scrolled {
+  padding: 0.8rem 2rem;
+  background: rgba(18, 18, 18, 0.9);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(44, 175, 79, 0.3);
+}
+
+.modern-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.modern-logo-container {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  z-index: 1001; /* Asegura que el logo esté por encima del menú móvil */
+}
+
+.modern-logo-container .logo {
+  transform: scale(0.8);
+  transition: transform 0.3s ease;
+}
+
+.scrolled .modern-logo-container .logo {
+  transform: scale(0.7);
+}
+
+/* Navegación */
+.modern-nav {
+  display: flex;
+  gap: 1.8rem;
+  align-items: center;
+}
+
+.modern-nav-link {
+  color: var(--dark-text-primary);
+  text-decoration: none;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.modern-nav-link:hover {
+  color: var(--green-light);
+}
+
+/* Efecto de línea debajo del enlace */
+.modern-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--green-light);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.modern-nav-link:hover::after {
+  width: 70%;
+}
+
+.modern-nav-link.active {
+  color: var(--green-light);
+}
+
+.modern-nav-link.active::after {
+  width: 70%;
+  background-color: var(--green-light);
+}
+
+/* Botón de menú hamburguesa */
+.menu-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.menu-icon {
+  display: block;
+  position: relative;
+  width: 30px;
+  height: 3px;
+  background-color: var(--dark-text-primary);
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before,
+.menu-icon::after {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 3px;
+  background-color: var(--dark-text-primary);
+  transition: all 0.3s ease;
+}
+
+.menu-icon::before {
+  transform: translateY(-10px);
+}
+
+.menu-icon::after {
+  transform: translateY(10px);
+}
+
+/* Animación del icono de menú */
+.menu-icon.open {
+  background-color: transparent;
+}
+
+.menu-icon.open::before {
+  transform: rotate(45deg);
+}
+
+.menu-icon.open::after {
+  transform: rotate(-45deg);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modern-header {
+    padding: 1rem;
+  }
+
+  .modern-header.scrolled {
+    padding: 0.8rem 1rem;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .modern-nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    transition: right 0.3s ease;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+
+  .modern-nav.open {
+    right: 0;
+  }
+
+  /* Asegurarse de que la barra de navegación no se oculte cuando el menú está abierto */
+  .modern-header.hidden .modern-nav.open {
+    right: 0;
+  }
+
+  /* Evitar que la barra de navegación se oculte cuando el menú está abierto */
+  .modern-header .modern-nav.open ~ .modern-header {
+    transform: translateY(0);
+  }
+
+  .modern-nav-link {
+    font-size: 1.3rem;
+    padding: 1rem 0.5rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .modern-nav-link::after {
+    bottom: 0.5rem;
+  }
+}

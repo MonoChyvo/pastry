@@ -1,0 +1,612 @@
+/* Estilos para la página principal moderna */
+
+/* Contenedor principal */
+.modern-home-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--dark-bg-primary);
+  color: var(--dark-text-primary);
+  overflow-x: hidden;
+}
+
+/* Hero Section */
+.modern-hero-section {
+  min-height: 90vh; /* Reducido de 100vh a 90vh */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  padding: 1.5rem; /* Reducido de 2rem a 1.5rem */
+  padding-top: 5rem; /* Espacio adicional para la barra de navegación fija */
+  background: linear-gradient(135deg, rgba(44, 175, 79, 0.15) 0%, rgba(42, 42, 42, 0.95) 100%);
+}
+
+.hero-content-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 1.5rem; /* Reducido de 2rem a 1.5rem */
+}
+
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+}
+
+.modern-hero-title {
+  font-family: var(--font-title);
+  font-size: 3.5rem; /* Reducido de 4rem a 3.5rem */
+  line-height: 1.1;
+  margin-bottom: 1.2rem; /* Reducido de 1.5rem a 1.2rem */
+  color: var(--green-light);
+  position: relative;
+}
+
+.modern-hero-title::after {
+  content: '';
+  position: absolute;
+  bottom: -0.5rem;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background-color: var(--green-dark);
+  border-radius: 2px;
+}
+
+.modern-hero-subtitle {
+  font-size: 1.1rem; /* Reducido de 1.2rem a 1.1rem */
+  line-height: 1.5; /* Reducido de 1.6 a 1.5 */
+  margin-bottom: 1.5rem; /* Reducido de 2rem a 1.5rem */
+  color: var(--dark-text-secondary);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem; /* Reducido de 2rem a 1.5rem */
+}
+
+.primary-button {
+  padding: 1rem 2rem;
+  background-color: var(--green-dark);
+  color: var(--dark-text-primary);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(44, 175, 79, 0.3);
+}
+
+.primary-button:hover {
+  background-color: var(--green-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(44, 175, 79, 0.5);
+}
+
+.secondary-button {
+  padding: 1rem 2rem;
+  background-color: transparent;
+  color: var(--green-light);
+  border: 1px solid var(--green-light);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.secondary-button:hover {
+  background-color: rgba(44, 175, 79, 0.2);
+  box-shadow: 0 4px 12px rgba(44, 175, 79, 0.2);
+}
+
+.jp-accent {
+  font-family: var(--font-accent);
+  margin-right: 0.5rem;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-image-container {
+  position: relative;
+  width: 350px; /* Reducido de 400px a 350px */
+  height: 350px; /* Reducido de 400px a 350px */
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: all 0.5s ease;
+}
+
+.hero-image-container:hover {
+  transform: scale(1.05);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+}
+
+.featured-image,
+.featured-image-direct {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.hero-image-container:hover .featured-image,
+.hero-image-container:hover .featured-image-direct {
+  transform: scale(1.1);
+}
+
+.placeholder-image {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--green-light) 0%, var(--green-dark) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.placeholder-image::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M30,50 L70,50 M50,30 L50,70" stroke="white" stroke-width="2" stroke-opacity="0.3"/></svg>');
+  background-size: 50px 50px;
+  opacity: 0.2;
+}
+
+.no-products-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 3rem;
+  background-color: rgba(44, 175, 79, 0.05);
+  border-radius: 12px;
+  color: #666;
+}
+
+.image-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  padding: 2rem 1rem 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.jp-title {
+  font-family: var(--font-title-jp);
+  font-size: 2rem;
+  color: white;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--dark-text-secondary);
+  font-size: 0.9rem;
+  opacity: 0.7;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  overflow: hidden;
+  z-index: 10;
+}
+
+.scroll-indicator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(44, 175, 79, 0.1);
+  border-radius: 50px;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s ease;
+  z-index: -1;
+}
+
+.scroll-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+  color: var(--green-light);
+  box-shadow: 0 5px 15px rgba(44, 175, 79, 0.2);
+}
+
+.scroll-indicator:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  animation: float 2.5s ease-in-out infinite;
+  position: relative;
+  margin-top: 0.3rem;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+}
+
+.scroll-indicator:hover .scroll-arrow {
+  animation: pulse 1s ease-in-out infinite;
+  color: var(--green-light);
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Featured Products Section */
+.featured-products-section {
+  padding: 3.5rem 2rem; /* Reducido de 5rem a 3.5rem */
+  background-color: var(--dark-bg-secondary);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 2rem; /* Reducido de 3rem a 2rem */
+}
+
+.section-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.jp-title {
+  font-family: var(--font-title-jp);
+  font-size: 2.5rem;
+  color: var(--green-light);
+}
+
+.latin-title {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  color: var(--dark-text-primary);
+  margin-top: 0.5rem;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--dark-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.featured-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-product-card {
+  background-color: var(--dark-bg-card);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+  background-color: var(--dark-hover);
+}
+
+.product-image-container {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+}
+
+.product-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.featured-product-card:hover .product-image-container img {
+  transform: scale(1.1);
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.featured-product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.jp-name {
+  font-family: var(--font-elegant-jp);
+  font-size: 1.5rem;
+  color: white;
+}
+
+.product-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-name {
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-text-primary);
+}
+
+.product-short-desc {
+  font-size: 0.9rem;
+  color: var(--dark-text-secondary);
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.product-price {
+  font-weight: 600;
+  color: var(--green-light);
+  font-size: 1.1rem;
+}
+
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.view-all-button {
+  padding: 0.8rem 2rem;
+  background-color: transparent;
+  color: var(--green-light);
+  border: 1px solid var(--green-light);
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: var(--green-dark);
+  color: var(--dark-text-primary);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Philosophy Section */
+.philosophy-section {
+  padding: 3.5rem 2rem; /* Reducido de 5rem a 3.5rem */
+  background-color: var(--dark-bg-tertiary);
+  position: relative;
+  overflow: hidden;
+}
+
+.philosophy-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><path d="M0 0 L100 0 L100 100 L0 100 Z" fill="none" stroke="%232caf4f" stroke-width="0.5" stroke-opacity="0.1"/></svg>');
+  background-size: 50px 50px;
+  opacity: 0.3;
+  z-index: 0;
+}
+
+.philosophy-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.philosophy-header {
+  text-align: center;
+  margin-bottom: 2rem; /* Reducido de 3rem a 2rem */
+}
+
+.philosophy-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.philosophy-card {
+  background-color: var(--dark-bg-card);
+  border-radius: 12px;
+  padding: 2rem;
+  width: 300px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.philosophy-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+  background-color: var(--dark-hover);
+}
+
+.philosophy-symbol {
+  font-family: var(--font-title-jp);
+  font-size: 3rem;
+  color: var(--green-light);
+  margin-bottom: 1rem;
+}
+
+.philosophy-card h3 {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: var(--dark-text-primary);
+}
+
+.philosophy-card p {
+  color: var(--dark-text-secondary);
+  line-height: 1.6;
+}
+
+.philosophy-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem; /* Reducido de 3rem a 2rem */
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 3rem 2rem; /* Reducido de 5rem a 3rem */
+  background-color: var(--dark-bg-primary);
+  border-top: 1px solid var(--dark-border);
+  color: var(--dark-text-primary);
+}
+
+.contact-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.contact-info h2 {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.contact-info address {
+  font-style: normal;
+  margin-bottom: 2rem;
+  line-height: 1.8;
+}
+
+.contact-button {
+  padding: 0.8rem 2rem;
+  background-color: var(--green-dark);
+  color: var(--dark-text-primary);
+  border: none;
+  border-radius: 50px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.contact-button:hover {
+  background-color: var(--green-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Los estilos del footer se han movido a components/layout/Footer.css */
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .hero-content-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .modern-hero-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .hero-buttons {
+    justify-content: center;
+  }
+
+  .philosophy-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .modern-hero-title {
+    font-size: 3rem;
+  }
+
+  .hero-image-container {
+    width: 300px;
+    height: 300px;
+  }
+
+  .featured-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
