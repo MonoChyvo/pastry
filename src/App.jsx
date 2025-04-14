@@ -34,7 +34,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 // Componente principal
 const App = () => {
   return (
-    <Router>
+    <Router basename='/pastry'>
       <AppContent />
     </Router>
   )
