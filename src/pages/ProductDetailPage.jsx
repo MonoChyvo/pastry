@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import Navigation from '../components/Navigation'
+import ModernNavigation from '../components/layout/ModernNavigation'
 import LazyImage from '../components/ui/LazyImage'
 import './Pages.css'
 
@@ -37,7 +37,7 @@ const ProductDetailPage = () => {
   if (loading) {
     return (
       <div className='page-container'>
-        <Navigation />
+        <ModernNavigation />
         <main className='page-content'>
           <div className='loading-spinner'>Cargando...</div>
         </main>
@@ -48,7 +48,7 @@ const ProductDetailPage = () => {
   if (error || !product) {
     return (
       <div className='page-container'>
-        <Navigation />
+        <ModernNavigation />
         <main className='page-content'>
           <div className='error-message'>
             <h2>Error</h2>
@@ -66,7 +66,7 @@ const ProductDetailPage = () => {
 
   return (
     <div className='page-container'>
-      <Navigation />
+      <ModernNavigation />
 
       <main className='page-content'>
         <div className='product-detail-container'>
