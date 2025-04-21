@@ -2,7 +2,27 @@ import React, { useState, useEffect, useRef, memo } from 'react'
 import './LazyImage.css'
 
 /**
- * LazyImage - Componente optimizado para carga perezosa de imágenes
+ * Componente LazyImage
+ * ---------------------
+ * Imagen optimizada para carga perezosa (lazy loading) usando IntersectionObserver.
+ * Permite placeholders, manejo de errores y personalización de estilos.
+ *
+ * @component
+ * @param {Object} props - Props del componente
+ * @param {string} props.src - URL de la imagen a mostrar (requerido)
+ * @param {string} props.alt - Texto alternativo para accesibilidad (requerido)
+ * @param {string} [props.className] - Clases CSS adicionales (opcional)
+ * @param {string} [props.placeholderColor] - Color de fondo del placeholder (opcional)
+ * @param {string|number} [props.width] - Ancho de la imagen o contenedor (opcional)
+ * @param {string|number} [props.height] - Alto de la imagen o contenedor (opcional)
+ * @param {number} [props.threshold] - Umbral para IntersectionObserver (opcional, por defecto 0.1)
+ * @param {string} [props.rootMargin] - Margen raíz para IntersectionObserver (opcional)
+ * @returns {JSX.Element}
+ *
+ * @responsabilidad
+ * - Renderizar una imagen que solo se carga cuando entra al viewport.
+ * - Mostrar un placeholder mientras carga y un mensaje si hay error.
+ * - Permitir personalización de estilos y comportamiento.
  */
 const LazyImage = memo(function LazyImage({
   src,

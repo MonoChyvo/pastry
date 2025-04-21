@@ -6,6 +6,19 @@ import {
 } from '../redux/slices/uiSlice';
 import './Notifications.css';
 
+/**
+ * Componente Notifications
+ * ------------------------
+ * Sistema global de notificaciones para mostrar mensajes informativos, de éxito o error.
+ * Elimina automáticamente las notificaciones después de un tiempo definido o permite cierre manual.
+ *
+ * @component
+ * @returns {JSX.Element|null}
+ *
+ * @responsabilidad
+ * - Mostrar una lista de notificaciones activas.
+ * - Permitir la auto-remoción y cierre manual de notificaciones.
+ */
 const Notifications = () => {
   const dispatch = useDispatch();
   const notifications = useSelector(selectNotifications);
@@ -28,7 +41,12 @@ const Notifications = () => {
   }
 
   return (
-    <div className="notifications-container">
+    <div 
+      className="notifications-container"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       {notifications.map(notification => (
         <div 
           key={notification.id} 
@@ -40,8 +58,9 @@ const Notifications = () => {
           <button 
             className="notification-close"
             onClick={() => dispatch(removeNotification(notification.id))}
+            aria-label="Cerrar notificación"
           >
-            ✕
+            <span aria-hidden="true">✕</span>
           </button>
         </div>
       ))}

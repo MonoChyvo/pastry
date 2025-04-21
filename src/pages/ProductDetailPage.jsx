@@ -7,7 +7,6 @@ import './Pages.css'
 
 // Importar selectores y acciones de Redux
 import { selectProductById } from '../redux/slices/productsSlice'
-import { addToCart } from '../redux/slices/cartSlice'
 import { addNotification } from '../redux/slices/uiSlice'
 import { formatPrice } from '../data/products'
 
@@ -19,20 +18,6 @@ const ProductDetailPage = () => {
   const product = useSelector((state) => selectProductById(state, productId))
   const loading = useSelector((state) => state.products.loading)
   const error = useSelector((state) => state.products.error)
-
-  // Manejar la adición al carrito
-  const handleAddToCart = () => {
-    if (product) {
-      dispatch(addToCart({ product, quantity: 1 }))
-      dispatch(
-        addNotification({
-          type: 'success',
-          message: `${product.name} añadido al carrito`,
-          duration: 3000,
-        })
-      )
-    }
-  }
 
   if (loading) {
     return (
@@ -99,12 +84,7 @@ const ProductDetailPage = () => {
             </div>
 
             <div className='product-detail-actions'>
-              <button
-                className='add-to-cart-button'
-                onClick={handleAddToCart}
-                disabled={product.stock <= 0}>
-                {product.stock > 0 ? 'Añadir al Carrito' : 'Agotado'}
-              </button>
+              {/* Botón de añadir al carrito eliminado */}
               <Link
                 to='/productos'
                 className='back-to-products'>

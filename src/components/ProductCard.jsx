@@ -3,12 +3,22 @@ import { Link } from 'react-router-dom'
 import LazyImage from './ui/LazyImage'
 
 /**
- * ProductCard - Componente optimizado para mostrar tarjetas de productos
+ * Componente ProductCard
+ * ----------------------
+ * Tarjeta de producto optimizada para mostrar información básica de un producto.
+ * Utiliza LazyImage para carga eficiente de imágenes y React.memo para evitar renders innecesarios.
  *
- * Características:
- * - Utiliza LazyImage para carga perezosa de imágenes
- * - Optimizado con memo para evitar renderizados innecesarios
- * - Genera IDs de producto consistentes a partir del título si no se proporciona
+ * @component
+ * @param {Object} props - Props del componente
+ * @param {string} props.imageSrc - URL de la imagen del producto (requerido)
+ * @param {string} props.title - Título o nombre del producto (requerido)
+ * @param {string} [props.jpTitle] - Título alternativo en japonés (opcional)
+ * @param {string} [props.productId] - ID único del producto. Si no se proporciona, se genera a partir del título (opcional)
+ *
+ * @responsabilidad
+ * - Renderizar una tarjeta con imagen, título y enlace al detalle del producto.
+ * - Generar un identificador único si no se proporciona.
+ * - Mostrar el título alternativo si está disponible.
  */
 const ProductCard = memo(({ imageSrc, title, jpTitle, productId }) => {
   // Extraer el ID del producto del nombre si no se proporciona explícitamente

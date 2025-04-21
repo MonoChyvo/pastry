@@ -19,9 +19,12 @@
   --dark-hover: #3a3a3a;
 
   /* Colores de acento para tema oscuro */
-  --green-light-dark: #5ab968; /* Verde claro ajustado para tema oscuro */
-  --green-dark-dark: #259e3e; /* Verde oscuro ajustado para tema oscuro */
-  --beige-dark: #d5d5b0; /* Beige ajustado para tema oscuro */
+  --green-light-dark: #5ab968;
+  /* Verde claro ajustado para tema oscuro */
+  --green-dark-dark: #259e3e;
+  /* Verde oscuro ajustado para tema oscuro */
+  --beige-dark: #d5d5b0;
+  /* Beige ajustado para tema oscuro */
 
   /* Sombras */
   --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.25);
@@ -60,8 +63,10 @@ body {
   background-color: #dcecbbcd;
   color: #f5f5f5;
   line-height: 1.6;
-  overflow-x: hidden; /* Prevenir scroll horizontal */
-  overflow-y: auto; /* Permitir scroll vertical */
+  overflow-x: hidden;
+  /* Prevenir scroll horizontal */
+  overflow-y: auto;
+  /* Permitir scroll vertical */
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -152,7 +157,8 @@ h4.jp-title {
   height: 100vh;
   width: 100%;
   position: relative;
-  overflow: auto; /* Cambiado de 'hidden' a 'auto' para permitir scroll */
+  overflow: auto;
+  /* Cambiado de 'hidden' a 'auto' para permitir scroll */
 }
 
 /* Estilos mejorados para el componente de carga */
@@ -265,17 +271,6 @@ h4.jp-title {
   }
 }
 
-/* Estilos para FlyingLeaves */
-.flying-leaves {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 10;
-}
 
 /* Estilos mejorados para las columnas */
 #hero-column {
@@ -342,6 +337,7 @@ h4.jp-title {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -366,8 +362,10 @@ h4.jp-title {
   bottom: -2px;
   left: -4px;
   width: calc(100% + 8px);
-  height: 6px; /* Ajusta según el tamaño de tu imagen */
-  background-image: url('./assets/trazo.png'); /* Imagen del trazo de brocha */
+  height: 6px;
+  /* Ajusta según el tamaño de tu imagen */
+  background-image: url('./assets/trazo.png');
+  /* Imagen del trazo de brocha */
   background-size: 100% 100%;
   background-repeat: no-repeat;
 }
@@ -390,7 +388,8 @@ Cada highlight tiene un trazo de brocha ligeramente diferente
 
 /* Elementos decorativos - Bambú más ancho y dinámico */
 .bamboo-divider {
-  width: 10px; /* Más ancho que antes */
+  width: 10px;
+  /* Más ancho que antes */
   background: linear-gradient(to bottom, transparent, var(--green-dark), transparent);
   margin: 0 2rem;
   position: relative;
@@ -402,8 +401,10 @@ Cada highlight tiene un trazo de brocha ligeramente diferente
 .bamboo-divider::after {
   content: '';
   position: absolute;
-  width: 24px; /* Más ancho */
-  height: 4px; /* Más alto */
+  width: 24px;
+  /* Más ancho */
+  height: 4px;
+  /* Más alto */
   background-color: var(--green-dark);
   left: -7px;
 }
@@ -441,49 +442,60 @@ Segunda barra de bambú con animación distinta
 Animaciones más dinámicas para los bambúes
 */
 @keyframes bambooSway1 {
+
   0%,
   100% {
     transform: translateX(0) rotate(0deg);
   }
+
   25% {
     transform: translateX(calc(var(--bamboo-sway-distance-1) * 0.7)) rotate(1deg);
   }
+
   50% {
     transform: translateX(calc(var(--bamboo-sway-distance-1) * -0.5)) rotate(-0.5deg);
   }
+
   75% {
     transform: translateX(var(--bamboo-sway-distance-1)) rotate(0.7deg);
   }
 }
 
 @keyframes bambooSway2 {
+
   0%,
   100% {
     transform: translateX(0) rotate(0deg);
   }
+
   20% {
     transform: translateX(calc(var(--bamboo-sway-distance-2) * -0.8)) rotate(-0.8deg);
   }
+
   60% {
     transform: translateX(var(--bamboo-sway-distance-2)) rotate(1deg);
   }
 }
 
 @keyframes bambooNodeSway1 {
+
   0%,
   100% {
     transform: translateX(0) scaleX(1);
   }
+
   50% {
     transform: translateX(3px) scaleX(1.1);
   }
 }
 
 @keyframes bambooNodeSway2 {
+
   0%,
   100% {
     transform: translateX(0) scaleX(1);
   }
+
   50% {
     transform: translateX(-2px) scaleX(1.05);
   }
@@ -639,12 +651,10 @@ Animaciones más dinámicas para los bambúes
   left: 0;
   width: 200%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0) 100%);
   transform: translateX(-100%);
   animation: waterFlow 5s infinite linear;
 }
@@ -654,16 +664,19 @@ Animaciones más dinámicas para los bambúes
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(100%);
   }
 }
 
 @keyframes bambooSway {
+
   0%,
   100% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(4px);
   }
@@ -704,143 +717,9 @@ Animaciones más dinámicas para los bambúes
   left: 10%;
 }
 
-/* Actualizaciones para las hojas */
-.leaf {
-  position: absolute;
-  top: -50px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
-  opacity: 0.8;
-  /* Variables personalizadas con valores predeterminados */
-  --wind-factor: 1;
-  --rotate-factor: 1;
-  --path-complexity: 1;
-  --zigzag-x: 1; /* Nueva variable para controlar dirección del zigzag */
-}
-
-/* Tres tipos diferentes de hojas */
-.leaf-type-1 {
-  background-image: url('./assets/leaf.png');
-  animation: fallType1 linear forwards;
-}
-
-.leaf-type-2 {
-  background-image: url('./assets/leaf.png');
-  animation: fallType2 linear forwards;
-}
-
-.leaf-type-3 {
-  background-image: url('./assets/leaf.png');
-  animation: fallType3 linear forwards;
-}
-
-/* Animaciones de caída con movimientos zigzag mejorados */
-@keyframes fallType1 {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  10% {
-    opacity: 0.8;
-    transform: translateY(10vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 5vw))
-      rotate(calc(var(--rotate-factor) * 15deg));
-  }
-  25% {
-    transform: translateY(25vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -15vw))
-      rotate(calc(var(--rotate-factor) * 45deg));
-  }
-  40% {
-    transform: translateY(40vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 10vw))
-      rotate(calc(var(--rotate-factor) * 70deg));
-  }
-  60% {
-    transform: translateY(60vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -10vw))
-      rotate(calc(var(--rotate-factor) * 100deg));
-  }
-  75% {
-    transform: translateY(75vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 15vw))
-      rotate(calc(var(--rotate-factor) * 135deg));
-    opacity: 0.8;
-  }
-  90% {
-    transform: translateY(90vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -8vw))
-      rotate(calc(var(--rotate-factor) * 160deg));
-    opacity: 0.5;
-  }
-  100% {
-    transform: translateY(110vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 5vw))
-      rotate(calc(var(--rotate-factor) * 180deg));
-    opacity: 0;
-  }
-}
-
-@keyframes fallType2 {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  15% {
-    opacity: 0.8;
-    transform: translateY(15vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 12vw))
-      rotate(calc(var(--rotate-factor) * -30deg));
-  }
-  30% {
-    transform: translateY(30vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -8vw))
-      rotate(calc(var(--rotate-factor) * -60deg));
-  }
-  50% {
-    transform: translateY(50vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 15vw))
-      rotate(calc(var(--rotate-factor) * -90deg));
-  }
-  70% {
-    transform: translateY(70vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -10vw))
-      rotate(calc(var(--rotate-factor) * -120deg));
-  }
-  85% {
-    transform: translateY(85vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 8vw))
-      rotate(calc(var(--rotate-factor) * -160deg));
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(110vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -10vw))
-      rotate(calc(var(--rotate-factor) * -200deg));
-    opacity: 0;
-  }
-}
-
-@keyframes fallType3 {
-  0% {
-    transform: translateY(0) translateX(0) rotate(0deg);
-    opacity: 0;
-  }
-  20% {
-    opacity: 0.8;
-    transform: translateY(20vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 12vw))
-      rotate(calc(var(--rotate-factor) * 40deg));
-  }
-  45% {
-    transform: translateY(45vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -15vw))
-      rotate(calc(var(--rotate-factor) * 80deg));
-  }
-  65% {
-    transform: translateY(65vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 18vw))
-      rotate(calc(var(--rotate-factor) * 110deg));
-  }
-  85% {
-    transform: translateY(85vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * -12vw))
-      rotate(calc(var(--rotate-factor) * 150deg));
-    opacity: 0.7;
-  }
-  100% {
-    transform: translateY(110vh) translateX(calc(var(--wind-factor) * var(--zigzag-x) * 8vw))
-      rotate(calc(var(--rotate-factor) * 180deg));
-    opacity: 0;
-  }
-}
-
 /* Responsive adjustments */
 @media (max-width: 768px) {
+
   body,
   #root {
     width: 100%;
@@ -896,30 +775,36 @@ Animaciones más dinámicas para los bambúes
   }
 
   @keyframes bambooSwayHorizontal {
+
     0%,
     100% {
       transform: translateY(0);
     }
+
     50% {
       transform: translateY(var(--bamboo-sway-distance-1));
     }
   }
 
   @keyframes bambooNodeSwayVertical1 {
+
     0%,
     100% {
       transform: translateY(0) scaleY(1);
     }
+
     50% {
       transform: translateY(2px) scaleY(1.1);
     }
   }
 
   @keyframes bambooNodeSwayVertical2 {
+
     0%,
     100% {
       transform: translateY(0) scaleY(1);
     }
+
     50% {
       transform: translateY(-3px) scaleY(1.05);
     }

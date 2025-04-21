@@ -2,7 +2,6 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage' // localStorage por defecto
 import productsReducer from './slices/productsSlice'
-import cartReducer from './slices/cartSlice'
 import uiReducer from './slices/uiSlice'
 
 // Configuración de persistencia para cada reducer
@@ -10,12 +9,6 @@ const productsPersistConfig = {
   key: 'products',
   storage,
   whitelist: ['filters'], // Solo persistir los filtros, no los productos completos
-}
-
-const cartPersistConfig = {
-  key: 'cart',
-  storage,
-  whitelist: ['items', 'totalItems', 'totalAmount'], // Persistir todo el carrito
 }
 
 const uiPersistConfig = {
@@ -26,13 +19,11 @@ const uiPersistConfig = {
 
 // Crear reducers persistentes
 const persistedProductsReducer = persistReducer(productsPersistConfig, productsReducer)
-const persistedCartReducer = persistReducer(cartPersistConfig, cartReducer)
 const persistedUiReducer = persistReducer(uiPersistConfig, uiReducer)
 
 // Combinar reducers
 const rootReducer = combineReducers({
   products: persistedProductsReducer,
-  cart: persistedCartReducer,
   ui: persistedUiReducer,
 })
 
@@ -40,7 +31,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['products', 'cart', 'ui'], // Evitar duplicación ya que cada reducer tiene su propia configuración
+  blacklist: ['products', 'ui'], // Evitar duplicación ya que cada reducer tiene su propia configuración
 }
 
 // Crear reducer raíz persistente

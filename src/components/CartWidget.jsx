@@ -1,61 +1,62 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { 
-  selectCartItems, 
-  selectCartTotalItems, 
-  selectCartTotalAmount,
-  selectIsCartOpen,
-  toggleCart,
-  removeFromCart,
-  updateQuantity,
-  clearCart
-} from '../redux/slices/cartSlice';
 import { formatPrice } from '../data/products';
+import { useCart } from '../hooks/useCart';
 
+/**
+ * Componente CartWidget
+ * ----------------------
+ * Widget interactivo para mostrar y gestionar el carrito de compras.
+ * Conectado a Redux para reflejar el estado global del carrito.
+ * Permite abrir/cerrar el carrito, modificar cantidades, eliminar productos y vaciar el carrito.
+ *
+ * @component
+ * @returns {JSX.Element}
+ *
+ * @responsabilidad
+ * - Mostrar el número total de productos en el carrito.
+ * - Permitir la visualización y edición rápida del carrito.
+ * - Gestionar acciones de producto (eliminar, modificar cantidad, vaciar carrito).
+ */
 const CartWidget = () => {
-  const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
-  const totalItems = useSelector(selectCartTotalItems);
-  const totalAmount = useSelector(selectCartTotalAmount);
-  const isOpen = useSelector(selectIsCartOpen);
-
-  const handleToggleCart = () => {
-    dispatch(toggleCart());
-  };
-
-  const handleRemoveItem = (productId) => {
-    dispatch(removeFromCart(productId));
-  };
-
-  const handleUpdateQuantity = (productId, quantity) => {
-    dispatch(updateQuantity({ productId, quantity }));
-  };
-
-  const handleClearCart = () => {
-    dispatch(clearCart());
-  };
+  const {
+    cartItems,
+    totalItems,
+    totalAmount,
+    isOpen,
+    toggleCart,
+    removeFromCart,
+    updateQuantity,
+    clearCart
+  } = useCart();
 
   return (
     <div className="cart-widget">
       <button 
         className="cart-toggle-button"
-        onClick={handleToggleCart}
+        onClick={toggleCart}
+        aria-label="Abrir o cerrar carrito de compras"
       >
-        <span className="cart-icon">🛒</span>
+        <span className="cart-icon" aria-hidden="true">🛒</span>
         {totalItems > 0 && (
           <span className="cart-count">{totalItems}</span>
         )}
       </button>
 
       {isOpen && (
-        <div className="cart-dropdown">
+        <div 
+          className="cart-dropdown"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Carrito de compras"
+        >
           <div className="cart-header">
-            <h3>Tu Carrito</h3>
+            <h3 id="cart-title">Tu Carrito</h3>
             <button 
               className="close-cart-button"
-              onClick={handleToggleCart}
+              onClick={toggleCart}
+              aria-label="Cerrar carrito"
             >
-              ✕
+              <span aria-hidden="true">✕</span>
             </button>
           </div>
 
@@ -83,21 +84,24 @@ const CartWidget = () => {
                     <div className="cart-item-actions">
                       <div className="quantity-controls">
                         <button 
-                          onClick={() => handleUpdateQuantity(item.id, item.quantity - 1)}
+                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
                           disabled={item.quantity <= 1}
+                          aria-label={`Disminuir cantidad de ${item.name}`}
                         >
                           -
                         </button>
                         <span className="quantity">{item.quantity}</span>
                         <button 
-                          onClick={() => handleUpdateQuantity(item.id, item.quantity + 1)}
+                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          aria-label={`Aumentar cantidad de ${item.name}`}
                         >
                           +
                         </button>
                       </div>
                       <button 
                         className="remove-item-button"
-                        onClick={() => handleRemoveItem(item.id)}
+                        onClick={() => removeFromCart(item.id)}
+                        aria-label={`Eliminar ${item.name} del carrito`}
                       >
                         Eliminar
                       </button>
@@ -114,7 +118,8 @@ const CartWidget = () => {
                 <div className="cart-actions">
                   <button 
                     className="clear-cart-button"
-                    onClick={handleClearCart}
+                    onClick={clearCart}
+                    aria-label="Vaciar carrito"
                   >
                     Vaciar Carrito
                   </button>

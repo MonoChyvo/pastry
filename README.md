@@ -9,8 +9,6 @@ La aplicación ofrece una experiencia de usuario moderna y elegante, con animaci
 ## Características
 
 - **Catálogo de Productos**: Visualización de productos de pastelería japonesa con detalles, ingredientes y precios.
-- **Carrito de Compras**: Funcionalidad completa para añadir productos, actualizar cantidades y gestionar el carrito.
-- **Persistencia de Datos**: Estado persistente para el carrito y preferencias del usuario mediante Redux Persist.
 - **Diseño Responsivo**: Experiencia optimizada para dispositivos móviles y de escritorio.
 - **Animaciones**: Transiciones y animaciones suaves para mejorar la experiencia del usuario.
 - **Navegación Intuitiva**: Estructura de navegación clara con React Router.
@@ -61,6 +59,14 @@ El diseño de Betsubara se basa en conceptos japoneses fundamentales:
 - **Pastel de Matcha (抹茶)**: Delicado pastel elaborado con auténtico té matcha japonés de la más alta calidad.
 - **Mochi Cake (餅)**: Inspirado en el tradicional mochi japonés, con textura elástica del arroz glutinoso.
 - **Dorayaki Especial (どら焼き)**: Versión especial del clásico dorayaki con anko casero.
+
+## Historial de Cambios
+
+- **[2025-04-20] Eliminación del carrito de compras:**
+  - Se removió completamente la funcionalidad y lógica de carrito de compras.
+  - Se eliminaron componentes, hooks, slices de Redux, acciones, selectores y estilos asociados al carrito.
+  - El botón para añadir productos al carrito y la gestión de cantidades ya no están presentes.
+  - El botón de reinicio ahora solo restablece filtros de productos.
 
 ## Instalación y Uso
 

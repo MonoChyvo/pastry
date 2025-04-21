@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Logo from '../ui/Logo'
-import CartWidget from '../CartWidget'
 import './ModernNavigation.css'
 
 const ModernNavigation = () => {
@@ -104,7 +103,6 @@ const ModernNavigation = () => {
               className={`modern-nav-link ${location.pathname === '/contacto' ? 'active' : ''}`}>
               Contacto
             </Link>
-            <CartWidget />
           </nav>
         </div>
       </header>

@@ -4,6 +4,7 @@ import './App.css'
 import PageTransition from './components/layout/PageTransition'
 import Notifications from './components/Notifications'
 import ResetStateButton from './components/ResetStateButton'
+import { AnimationPreferencesProvider } from './context/AnimationPreferencesContext'
 
 // Importar páginas con lazy loading
 const HomePage = lazy(() => import('./pages/ModernHomePage'))
@@ -34,9 +35,11 @@ const ErrorFallback = ({ error, resetErrorBoundary }) => (
 // Componente principal
 const App = () => {
   return (
-    <Router basename='/pastry'>
-      <AppContent />
-    </Router>
+    <AnimationPreferencesProvider>
+      <Router basename='/pastry'>
+        <AppContent />
+      </Router>
+    </AnimationPreferencesProvider>
   )
 }
 
