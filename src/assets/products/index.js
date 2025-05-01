@@ -6,9 +6,9 @@
  */
 
 // Importar imágenes de productos
-import matchaCakeImage from './matcha_cake.jpg'
-import mochiCakeImage from './mochi_cake.jpg'
-import dorayakiCakeImage from './dorayaki_cake.jpg'
+import matchaCakeImage from './matcha_cake.webp'
+import mochiCakeImage from './mochi_cake.webp'
+import dorayakiCakeImage from './dorayaki_cake.webp'
 
 // Exportar imágenes individualmente
 export {

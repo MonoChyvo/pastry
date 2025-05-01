@@ -121,8 +121,8 @@ h4.jp-title {
 .logo {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 2rem;
+  gap: 4px;
+  margin-bottom: .4rem;
 }
 
 .logo-image {

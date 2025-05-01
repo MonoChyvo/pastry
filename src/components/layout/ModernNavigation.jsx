@@ -82,7 +82,7 @@ const ModernNavigation = () => {
           </button>
 
           {/* Navegación principal */}
-          <nav className={`modern-nav ${menuOpen ? 'open' : ''}`}>
+          <nav className={`modern-nav ${menuOpen ? 'open' : ''}`} aria-label='Menú principal'>
             <Link
               to='/'
               className={`modern-nav-link ${location.pathname === '/' ? 'active' : ''}`}>
